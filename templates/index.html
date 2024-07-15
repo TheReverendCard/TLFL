@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Hotspot</title>
+</head>
+<body>
+    <h1>Welcome to the Library Hotspot</h1>
+    <h2>Top 10 Books</h2>
+    <ul>
+        {% for book in books %}
+        <li>{{ book[1] }} by {{ book[2] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

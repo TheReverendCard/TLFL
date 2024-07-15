@@ -1,5 +1,8 @@
 # TLFL
-The Tiniest Little Free Library - Standalone Pi Zero Project Gutenberg Clones
+The Tiniest Little Free Library - Standalone Pi Zero Project Gutenberg (PG) Clones
+The grand plan for these are distributed Project Gutenberg/Wikipedia clones of various sizes.  Made to go on low-power and low-cost compute devices to be available in remote and/or off-grid situations.
+
+
 # Raspberry Pi Project Gutenberg Hotspot Setup
 
 ## Instructions

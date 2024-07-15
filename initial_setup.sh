@@ -1,9 +1,30 @@
 #!/bin/bash
 
 # Create directories
-sudo mkdir -p /var/www/html/gutenberg
+sudo mkdir -p /var/www/html/gutenberg/templates
 
-# Create Flask app
+# Create HTML template
+sudo bash -c 'cat << EOF > /var/www/html/gutenberg/templates/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Hotspot</title>
+</head>
+<body>
+    <h1>Welcome to the Library Hotspot</h1>
+    <h2>Top 10 Books</h2>
+    <ul>
+        {% for book in books %}
+        <li>{{ book[1] }} by {{ book[2] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+EOF'
+
+# Remaining steps for Flask app and systemd service
 sudo apt-get install -y python3-flask
 
 cat << EOF > /home/pi/app.py
@@ -25,7 +46,6 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
 EOF
 
-# Create systemd service for Flask app
 sudo bash -c 'cat << EOF > /etc/systemd/system/flaskapp.service
 [Unit]
 Description=Flask App
@@ -40,7 +60,6 @@ ExecStart=/usr/bin/python3 /home/pi/app.py
 WantedBy=multi-user.target
 EOF'
 
-# Enable and start Flask app service
 sudo systemctl enable flaskapp
 sudo systemctl start flaskapp
 
